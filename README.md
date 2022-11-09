@@ -1,7 +1,6 @@
-# README
+# Flight
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Projects was built using `React` for frontend and `Ruby on Rails` for backend.
 
 Things you may want to cover:
 
@@ -10,25 +9,29 @@ Things you may want to cover:
 * Database: sqlite
 * React version: 18.2.0
 * node version: v16.16.0
-* react-simple-star-rating: 5.1.0
 
-# Getting started
+## Getting started
 To get the Rails server running locally:
 - `bundle install` to install all reqired rails dependencies
 - `yarn install` to install all reqired react dependencies
 - `rake db:migrate` to make all database migrations
 - `rails s` to start the local server.
 
-# Code Overview
+## Screenshots
+- Home
 
-## Folders
+![App Screenshot](app/assets/images/homepage.png)
 
-- `app/javascript` - Contains the react js files for front-end.
-- `app/models` - Contains the database models for the application where we can define methods, validations, queries, and relations to other models.
-- `app/views` - Render the react element.
-- `app/controllers` - Contains the controllers where requests are routed to their actions, where we find and manipulate our models and return them for the views to render.
-- `config` - Contains configuration files for our Rails application and for our database, along with an `initializers` folder for scripts that get run on boot.
-- `db` - Contains the migrations needed to create our database schema.
+- Review Form / Review Edit
+
+![App Screenshot](app/assets/images/reviewpage.png)
+
+
+# About 
+
+Flight is a straightforward online application that uses the rails api to execute basic CRUD operations on airline reviews. It also has a secure login system using devise gem and serializers that transform supplied Rails objects into JSON format.
+
+# Concept
 
 ## React on Rails
 
@@ -71,108 +74,84 @@ To get the Rails server running locally:
 ```
 
 
-## Routes
-```shell
-Prefix                      Verb      URI Pattern                                         Controller#Action
+## Association
 
-new_user_session            GET      /users/sign_in(.:format)                             devise/sessions#new
-user_session                POST     /users/sign_in(.:format)                             devise/sessions#create
-destroy_user_session        DELETE   /users/sign_out(.:format)                            devise/sessions#destroy
-new_user_password           GET      /users/password/new(.:format)                        devise/passwords#new
-edit_user_password          GET      /users/password/edit(.:format)                       devise/passwords#edit
-user_password               PATCH    /users/password(.:format)                            devise/passwords#update
-                            PUT      /users/password(.:format)                            devise/passwords#update
-                            POST     /users/password(.:format)                            devise/passwords#create
-cancel_user_registration    GET      /users/cancel(.:format)                              devise/registrations#cancel
-new_user_registration       GET      /users/sign_up(.:format)                             devise/registrations#new
-edit_user_registration      GET      /users/edit(.:format)                                devise/registrations#edit
-user_registration           PATCH    /users(.:format)                                     devise/registrations#update
-                            PUT      /users(.:format)                                     devise/registrations#update
-                            DELETE   /users(.:format)                                     devise/registrations#destroy
-                            POST     /users(.:format)                                     devise/registrations#create
-root                        GET      /                                                    pages#home    
-api_v1_airlines             GET      /api/v1/airlines(.:format)                           api/v1/airlines#index
-                            POST     /api/v1/airlines(.:format)                           api/v1/airlines#create
-new_api_v1_airline          GET      /api/v1/airlines/new(.:format)                       api/v1/airlines#new
-edit_api_v1_airline         GET      /api/v1/airlines/:slug/edit(.:format)                api/v1/airlines#edit
-api_v1_airline              GET      /api/v1/airlines/:slug(.:format)                     api/v1/airlines#show
-                            PATCH    /api/v1/airlines/:slug(.:format)                     api/v1/airlines#update
-                            PUT      /api/v1/airlines/:slug(.:format)                     api/v1/airlines#update
-                            DELETE   /api/v1/airlines/:slug(.:format)                     api/v1/airlines#destroy
-api_v1_reviews              POST     /api/v1/reviews(.:format)                            api/v1/reviews#create
-edit_api_v1_review          GET      /api/v1/reviews/:id/edit(.:format)                   api/v1/reviews#edit
-api_v1_review               PATCH    /api/v1/reviews/:id(.:format)                        api/v1/reviews#update
-                            PUT      /api/v1/reviews/:id(.:format)                        api/v1/reviews#update
-                            DELETE   /api/v1/reviews/:id(.:format)                        api/v1/reviews#destroy
-                            GET      /*path(.:format)                                     pages#home
+- **has_many Association** :
+
+  A `has_many` association indicates a one-to-many connection with another model. This association indicates that   each instance of the model has zero or more instances of another model.
+  
+- **belongs_to Association** :
+
+  A `belongs_to` association sets up a connection with another model, such that each instance of the declaring model "belongs to" one instance of the other model.
+
+## Model
+
+- **airline.rb**
+
+```shell
+
+    class Airline < ApplicationRecord
+    has_many :reviews, dependent: :destroy
+    end  
+
 ```
 
+- **review.rb**
 
-## API
-
-Uses Rest API.
-- A `REST API` (also known as RESTful API) is an application programming interface (API or web API) that conforms to the constraints of REST architectural style and allows for interaction with RESTful web services.
-
-## Models
-- `User Model` - Model contain Email and password.
-- `Airline Model` - Model contain Name image and slug.
-- `Review Model` - Model contain Title description and score based on star rating.
-
-##  Migration
 ```shell
+    class Review < ApplicationRecord
+    belongs_to :airline
+    end
+```
+- **user.rb**
+
+```shell
+    class User < ApplicationRecord
+      devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+    end
+```
+## Serializers
+
+- **airline_serializer.rb**
+
+```shell
+  class AirlineSerializer
+    include FastJsonapi::ObjectSerializer
+    attributes :name, :image_url, :slug, :avg_score
+    has_many :reviews
+  end 
+```
+- **review_serializer.rb**
+
+```shell
+  class ReviewSerializer
+    include FastJsonapi::ObjectSerializer
+    attributes :title, :description, :score, :airline_id
+  end
+```
+
+## Migrations
+
+```shell
+    
     rails g model Airline name image_url slug
 
     rails g model Review title description score:integer airline:belongs_to
 ```
-```shell
-    rails db:migrate
-```
-## Serializer
-- The Serializer converts the objects into a JSON format.
-```shell
-    gem 'fast_jsonapi'
-```
-```shell
-    rails g serializer Airline name image_url slug
-    rails g serializer Review title description score airline_id
-```
-## Bootstrap
-- Bootstrap is used to make page responsive. 
+
+## Tools & Gems
 
 ```shell
-    gem 'bootstrap', '~> 5.2'
-```
-## Rubocop
-- RuboCop is a Ruby code style checking and code formatting tool.
+  gem 'devise'
 
-```shell
-    gem 'rubocop-rails', require: false
-```
+  gem 'react-rails'
 
+  gem 'fast_jsonapi'
 
-
-# Configuration
-
-## Authentication
-Devise gem is used for login and registration page it only required email and password.To allow additional parameters on sign up we use application_controller to allow additional parameters.
-
-### Add devise gem in Gemfile
-```shell
-    gem 'devise'
-```
-```shell
-    bundle install
-```
-### Install Devise
-```shell
-    rails g devise:install
-    rails g devise:views
-    rails g devise User
-```
-### Create devise Controller
-```shell
-    rails generate devise:controllers users
+  gem 'bootstrap', '~> 5.2'
 ```
 
-## Null Session
-By default Ruby on Rails will throw an exception when a request doesn't contain a valid CSRF token. we tell Rails to use an empty session instead of throwing an exception for requests by specifying `:null_session`.
+## Formatting
+
+- rubocop
+
