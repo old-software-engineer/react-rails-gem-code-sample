@@ -20,12 +20,12 @@ To get the Rails server running locally:
 ## Screenshots
 - Home
 
-![App Screenshot](app/assets/images/homepage.png)
+![homepage](https://user-images.githubusercontent.com/15182066/200843084-e5f37e8f-579c-4b7f-b6a9-72e6ea37c8a4.png)
+
 
 - Review Form / Review Edit
 
-![App Screenshot](app/assets/images/reviewpage.png)
-
+![reviewpage](https://user-images.githubusercontent.com/15182066/200843120-858fddfc-1e02-400d-8695-cb4bb9c82806.png)
 
 # About 
 
