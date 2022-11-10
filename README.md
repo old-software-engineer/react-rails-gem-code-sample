@@ -1,21 +1,6 @@
-# Flight
+# Flight 
 
-Projects was built using `React` for frontend and `Ruby on Rails` for backend.
-
-Things you may want to cover:
-
-* Ruby version: ruby 2.7.2
-* Rails Version: Rails 6.0.6
-* Database: sqlite
-* React version: 18.2.0
-* node version: v16.16.0
-
-## Getting started
-To get the Rails server running locally:
-- `bundle install` to install all reqired rails dependencies
-- `yarn install` to install all reqired react dependencies
-- `rake db:migrate` to make all database migrations
-- `rails s` to start the local server.
+Flight is a straightforward web application that enables user to register and submit flight feedback. A user has the ability to rate flight with stars, edit, and remove reviews.
 
 ## Screenshots
 - Home
@@ -29,49 +14,30 @@ To get the Rails server running locally:
 
 # About 
 
-Flight is a straightforward online application that uses the rails api to execute basic CRUD operations on airline reviews. It also has a secure login system using devise gem and serializers that transform supplied Rails objects into JSON format.
+The front-end is created using React-rails gem, while the back-end is developed using Ruby on Rails where users can provide feedback on a list of flights.<br/>
+A review form is available for users to create new reviews.<br/>
+A user can give a Title, Description, and Star-Rating.<br/>
+A user can modify and remove reviews.
+
 
 # Concept
 
-## React on Rails
+## React on Rails Gem
 
 - `React-rails` gem allow us to use React in Rails framework.
 - Automatically renders React server-side and client-side.
 - Lets you use `JSX`, `ES6`.
 
-```shell
-    gem 'react-rails'
-```
-
-### Add New Component in React
-- To create new Component, Go to `app/javascript/component` add `.js` file.
-- Example
-```shell
-  import React from 'react';
-
-    const ComponentName = () =>{
-        return(
-            <div>Hello, You have Successfully created Component.</div>
-        );  
-    }
-
-    export default ComponentName.js  
- ```
 
 ### Star Rating 
-```shell
-    yarn add react-simple-star-rating
-```
+
+- A simple react component for adding a star rating to the project.
+
 ### Axios
 - Axios is a promise based `HTTP` client for the browser and `Node.js`. Axios makes it easy to send asynchronous `HTTP` requests to `REST` endpoints.
-```shell
-    yarn add axios
-```
+
 ### Styled-Component
 - Styled-components lets you write actual `CSS` in your `JavaScript`. This means you can use all the features of `CSS` you use including (but by far not limited to) media queries, all pseudo-selectors, nesting, etc.
-```shell
-    yarn add styled-components
-```
 
 
 ## Association
@@ -84,74 +50,19 @@ Flight is a straightforward online application that uses the rails api to execut
 
   A `belongs_to` association sets up a connection with another model, such that each instance of the declaring model "belongs to" one instance of the other model.
 
-## Model
-
-- **airline.rb**
-
-```shell
-
-    class Airline < ApplicationRecord
-    has_many :reviews, dependent: :destroy
-    end  
-
-```
-
-- **review.rb**
-
-```shell
-    class Review < ApplicationRecord
-    belongs_to :airline
-    end
-```
-- **user.rb**
-
-```shell
-    class User < ApplicationRecord
-      devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
-    end
-```
 ## Serializers
+- Serializer converts an object in memory into a stream of bytes that can be recreated when needed. Serializers in Ruby on Rails convert a given object into a JSON format. Serializers control the particular attributes rendered when an object or model is converted into a JSON format.
 
-- **airline_serializer.rb**
-
-```shell
-  class AirlineSerializer
-    include FastJsonapi::ObjectSerializer
-    attributes :name, :image_url, :slug, :avg_score
-    has_many :reviews
-  end 
-```
-- **review_serializer.rb**
-
-```shell
-  class ReviewSerializer
-    include FastJsonapi::ObjectSerializer
-    attributes :title, :description, :score, :airline_id
-  end
-```
-
-## Migrations
-
-```shell
-    
-    rails g model Airline name image_url slug
-
-    rails g model Review title description score:integer airline:belongs_to
-```
 
 ## Tools & Gems
 
-```shell
-  gem 'devise'
+  - Devise
+  - React rails 
+  - Fast Json Api
+  - Bootstrap
 
-  gem 'react-rails'
-
-  gem 'fast_jsonapi'
-
-  gem 'bootstrap', '~> 5.2'
-```
 
 ## Formatting
 
-- rubocop
+- Super-linter
 
