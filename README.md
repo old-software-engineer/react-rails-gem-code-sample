@@ -33,8 +33,6 @@ A user can modify and remove reviews.
 
 - A simple react component for adding a star rating to the project.
 
-### Axios
-- Axios is a promise based `HTTP` client for the browser and `Node.js`. Axios makes it easy to send asynchronous `HTTP` requests to `REST` endpoints.
 
 ### Styled-Component
 - Styled-components lets you write actual `CSS` in your `JavaScript`. This means you can use all the features of `CSS` you use including (but by far not limited to) media queries, all pseudo-selectors, nesting, etc.
