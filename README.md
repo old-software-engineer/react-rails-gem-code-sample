@@ -8,7 +8,7 @@ Flight is a straightforward web application that enables user to register and su
 ![Screenshot from 2022-11-18 19-12-35](https://user-images.githubusercontent.com/15182066/202721753-c57e4b54-4ea4-467d-983b-355442e9f7a9.png)
 
 - Review Form 
-![Screenshot from 2022-11-18 19-12-35](https://user-images.githubusercontent.com/15182066/202722007-4f79cf78-fadd-44bc-a15c-84d6465fba28.png)
+![Screenshot from 2022-11-18 19-13-46](https://user-images.githubusercontent.com/15182066/202722252-5f93790e-6baa-4172-be3d-f01b74b93974.png)
 
 # About 
 
