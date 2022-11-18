@@ -2,6 +2,6 @@
 
 # Render react front-end to Page home
 class HomesController < ApplicationController
-    def index
-    end
+  def index
   end
+end
