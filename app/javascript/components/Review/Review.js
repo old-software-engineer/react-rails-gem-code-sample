@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import StarRatingComponent from "react-star-rating-component";
+import React, { useState } from 'react'
+import StarRatingComponent from 'react-star-rating-component'
 import {
   Card,
   Title,
   Description,
   ShowDescription,
   Arrow,
-  ArrowSection,
-} from "./Review.style";
+  ArrowSection
+} from './Review.style'
 
 // Review Component Return star rating title description and Delete Button
-const Review = ({id, attributes}) => {
-  const { title, description, score } = attributes || {};
-  const [showDescription, setShowDescription] = useState(false);
+const Review = ({ id, attributes }) => {
+  const { title, description, score } = attributes || {}
+  const [showDescription, setShowDescription] = useState(false)
 
   return (
     <Card>
@@ -24,20 +24,18 @@ const Review = ({id, attributes}) => {
             value={score}
             editing={false}
             renderStarIcon={() => (
-              <span className="fa fa-star " style={{ fontSize: "25px" }}></span>
+              <span className='fa fa-star ' style={{ fontSize: '25px' }} />
             )}
           />
-          {
-            <Arrow
-              className="fa fa-solid fa-chevron-down"
-              showDescription={showDescription}
-            ></Arrow>
-          }
+          <Arrow
+            className='fa fa-solid fa-chevron-down'
+            showDescription={showDescription}
+          />
         </ArrowSection>
       </ShowDescription>
-      {<Description active={showDescription}>{description}</Description>}
+      <Description active={showDescription}>{description}</Description>
     </Card>
-  );
-};
+  )
+}
 
-export default Review;
+export default Review
