@@ -1,59 +1,64 @@
-import React, {useState, useEffect, Fragment} from "react";
-import Airlineindex from "./Airlineindex";
-import styled from "styled-components";
-import { airlinesRender } from "../../Api/AirlineApi";
-const Home =styled.div`
-    text-allign: center;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-`
-const Header =styled.div`
-    padding:50px 50px 10px 50px;
-    h1{
-        font-size: 42px;
-        text-align: center;
-    }
-`
-const Grid =styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-    width: 100%;
-    padding: 20px;
-`
+import React, { useState, useEffect } from "react";
+import { airlinesRender } from "../../api/AirlineApi";
+import Slider from "react-slick";
+import { Header } from "./Airlines.style";
+import AirlineCard from "./AirlineCard";
+
+const SETTINGS = {
+  className: "center",
+  centerMode: true,
+  dots: true,
+  focusOnSelect: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+};
 
 const Airlines = () => {
-    const [airlines, setAirlines] = useState([]) // Airlines data 
-     
-    useEffect(() =>{
-        airlinesRender()
-        .then(resp => {
-            setAirlines(resp.data.data)
-        })
-        .catch(error =>{
-            console.log(error);
-        });  
-    },[])
-    // Render Each Airline details
-    const grid =airlines.map( item =>{
-        return (
-            <Airlineindex
-              key={item.attributes.name}
-              attributes={item.attributes}
-            />
-        )
-    })
-    return (
-        <Home>
-            <Header>
-                <h1>Flights</h1>
-            </Header>
-            <Grid>
-                 {grid}
-            </Grid>
-        </Home>
-    )
-}
+  const [airlines, setAirlines] = useState([]); // Airlines data
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [bgImage, setBgImage] = useState("/assets/flight.jpg");
 
-export default Airlines
+  useEffect(() => {
+    airlinesRender()
+      .then((resp) => {
+        setAirlines(resp.data.data);
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  }, []);
+
+  const sliderSettings = {
+    ...SETTINGS,
+    beforeChange: (current, next) => setActiveSlide(next),
+  };
+
+  useEffect(() => {
+    airlines.length && setBgImage(airlines[activeSlide].attributes.image_url);
+  }, [activeSlide]);
+
+  return (
+    <div
+      className="home"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+      }}
+    >
+      <Header >
+      </Header>
+      <Slider {...sliderSettings}>
+        {airlines.map((item, index) => (
+          <AirlineCard
+            key={index}
+            attributes={item.attributes}
+            activeSlide={activeSlide == index}
+          />
+        ))}
+      </Slider>
+    </div>
+  );
+};
+
+export default Airlines;

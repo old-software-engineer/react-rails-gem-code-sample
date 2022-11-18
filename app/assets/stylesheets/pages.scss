@@ -1,24 +1,6 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-// .star-wrapper {
-//     position: relative;
-//     display: inline-block;
-//   }
-  
-//   .stars {
-//     color: #fcc201;
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     overflow: hidden;
-//     white-space: nowrap;
-//   }
-  
-//   .star-wrapper::before, .stars::before {
-//     font-family: "FontAwesome";
-//     content: "\f005 \0020 \f005 \0020 \f005 \0020 \f005 \0020 \f005";
-//   }
 
 .heading{
     padding-left: 50%;
@@ -52,3 +34,28 @@
     margin: 10px;
 }
 html, body {margin: 0; height: 100%; overflow: hidden}
+
+.background_image{
+        background-image: url(image-path('background.jpg'));
+}
+
+.home{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all .5s ease;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar-header {
+    background: url("assets/White_plane_icon.svg") center / contain no-repeat;
+    transform: translateX(-50%);
+    top: 7px;
+    left: 47%;
+    position: absolute;
+    width: 150px;
+    font-size: 25px;
+  }

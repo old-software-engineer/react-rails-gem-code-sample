@@ -43,7 +43,10 @@ module Api
       end
 
       def options
-        @options ||= {include: %i[reviews]}
+        @options ||= {
+          include: %i[reviews],
+          params: { current_user: current_user }
+        }
       end
     end
   end
