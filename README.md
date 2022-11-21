@@ -3,8 +3,16 @@
 Flight is a straightforward web application that enables user to register and submit flight feedback. A user has the ability to rate flight with stars, edit, and remove reviews.
 
 ## Screenshots
-- Home
+- Sign In
+![sign_in](https://user-images.githubusercontent.com/15182066/203031512-8b9140be-6bd3-4734-86fd-d71fcbf83646.png)
+  
+- Sign Up 
+![sign_up](https://user-images.githubusercontent.com/15182066/203031623-f36a8b46-e19c-46da-9286-b6935bc018fe.png)
 
+- Forgot Password
+![forgot_password](https://user-images.githubusercontent.com/15182066/203031653-f9b4c7dc-4e9c-43fd-8977-6e40b436acad.png)
+
+- Home
 ![Screenshot from 2022-11-18 19-12-35](https://user-images.githubusercontent.com/15182066/202721753-c57e4b54-4ea4-467d-983b-355442e9f7a9.png)
 
 - Review Form 
