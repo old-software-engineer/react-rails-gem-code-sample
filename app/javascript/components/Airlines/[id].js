@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../SharedComponent/Header'
 import Form from '../Review/Form'
@@ -12,15 +12,14 @@ import {
   ReviewBackground
 } from './Airlines.style'
 
-const Airline = () => {
+const Airline = ({ token }) => {
   const { slug } = useParams() // useParams hook used for taking parameters from url.
   const [airline, setAirline] = useState({}) // Reflect state update for an Airline.
   const [loaded, setLoaded] = useState(false) // used for checking the data is loaded or not.
   const [check, setCheck] = useState(true)
   useEffect(() => {
-    reviewDetail(slug)
+    reviewDetail(slug, token)
       .then((resp) => {
-        console.log(resp)
         setAirline(resp.data)
         setLoaded(true)
       })
@@ -33,7 +32,6 @@ const Airline = () => {
     setCheck(false)
   }
 
-  console.log(airline.data)
   // Show Page for Airline which contain Header Component, and Reviews for Each user in left hand side and Form to add New review in Right hand Side.
   return (
     <div>
@@ -63,6 +61,7 @@ const Airline = () => {
                   airline_id={airline.data.id}
                   // checkuser={checkuser}
                   setAirlineSubmitForm={setAirlineSubmitForm}
+                  token={token}
                 />
               </ColumnRight>
             </ReviewBackground>

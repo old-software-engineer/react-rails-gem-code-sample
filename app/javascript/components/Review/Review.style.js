@@ -63,5 +63,6 @@ export const Arrow = styled.div`
   font-size: 1rem;
   margin-left: auto;
   transition: all 0.3s;
-  transform: ${(props) => (props.showDescription ? 'rotate(180deg)' : 'rotate(0deg)')};
+  transform: ${(props) =>
+    props.showDescription ? 'rotate(180deg)' : 'rotate(0deg)'};
 `

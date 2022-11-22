@@ -15,13 +15,13 @@ const SETTINGS = {
   slidesToScroll: 1
 }
 
-const Airlines = () => {
+const Airlines = ({ token }) => {
   const [airlines, setAirlines] = useState([]) // Airlines data
   const [activeSlide, setActiveSlide] = useState(0)
   const [bgImage, setBgImage] = useState('/assets/flight.jpg')
 
   useEffect(() => {
-    airlinesRender()
+    airlinesRender(token)
       .then((resp) => {
         setAirlines(resp.data.data)
       })

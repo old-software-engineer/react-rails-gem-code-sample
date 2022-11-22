@@ -145,8 +145,27 @@ body {
     -webkit-transition: .2s all;
     transition: .2s all
 }
-
+.user-form .submit-btn-disabled {
+    color: #fff;
+    background-color: #f67b7b;
+    font-weight: 400;
+    height: 50px;
+    font-size: 14px;
+    border: none;
+    width: 100%;
+    border-radius: 40px;
+    text-transform: uppercase;
+    -webkit-transition: .2s all;
+    transition: .2s all
+}
 .user-form .submit-btn:hover,
 .user-form .submit-btn:focus {
     opacity: .9
+}
+
+
+.link-center {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
 }

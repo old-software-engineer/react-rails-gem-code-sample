@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 // Used Simple-star-rating Package to take input and set review score in props
-const Form = ({ airline_id, attributes, setAirlineSubmitForm }) => {
+const Form = ({ airline_id, attributes, setAirlineSubmitForm, token }) => {
   // let attributes.checkuser;
   const enabled = attributes.checkuser || false
   const [reviewValue, setReviewValue] = useState({
@@ -27,7 +27,7 @@ const Form = ({ airline_id, attributes, setAirlineSubmitForm }) => {
   const handleReviewSubmit = (e) => {
     e.preventDefault()
     if (reviewValue.score) {
-      reviewCreate(reviewValue)
+      reviewCreate(reviewValue, token)
         .then((resp) => {
           setAirlineSubmitForm(resp)
           setReviewValue({ title: '', description: '', score: 0 })
@@ -62,7 +62,7 @@ const Form = ({ airline_id, attributes, setAirlineSubmitForm }) => {
             disabled={!enabled}
             type='submit'
           >
-            {(enabled) ? 'Submit Your Review' : 'Review Already Submitted'}
+            {enabled ? 'Submit Your Review' : 'Review Already Submitted'}
           </button>
         </form>
       </div>
