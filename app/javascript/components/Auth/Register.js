@@ -6,6 +6,7 @@ const Register = ({ setToken, setLogin }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [confirmPassword, setConfirmPassword] = useState("");
   const [enable, setEnable] = useState(false);
+  const [loading, setLoading] = useState(false);
   const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -20,15 +21,18 @@ const Register = ({ setToken, setLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     if (confirmPassword == user.password) {
       signUp(user)
         .then((resp) => {
           setEnable(false);
+          setLoading(false);
           setToken(resp.headers.authorization);
           document.cookie = `token=${resp.headers.authorization}`;
         })
         .catch((error) => {
           console.log("error", error);
+          setLoading(false);
         });
     } else {
       toast.error("Mismatch password !");
@@ -85,14 +89,26 @@ const Register = ({ setToken, setLogin }) => {
                   textAlign: "center",
                 }}
               >
-                <div style={{ padding: "0", margin: "1rem 0" }}>
+                <div
+                  style={{
+                    padding: "0",
+                    margin: "1rem 0",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
                   <button
                     type="submit"
-                    style={{ width: "20rem" }}
+                    style={{
+                      width: "20rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
                     disabled={!enable}
                     className={!enable ? "submit-btn-disabled" : "submit-btn"}
                   >
-                    Submit
+                    {loading ? <div className="spinner-login"></div> : "Submit"}
                   </button>
                 </div>
               </div>
