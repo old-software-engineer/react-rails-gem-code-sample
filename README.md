@@ -70,4 +70,6 @@ A user can modify and remove reviews.
 ## Formatting
 
 - Super-linter
+  - Rubocop
+  - ESlint
 
