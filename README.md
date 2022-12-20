@@ -61,7 +61,7 @@ A user can modify and remove reviews.
   - Bootstrap
 
 
-## Formatting
+## Linting & Formatting
 
 - Super-linter
   - Rubocop
