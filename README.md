@@ -1,6 +1,6 @@
 # Flight 
 
-Flight is a straightforward web application that enables user to register and submit flight feedback. A user has the ability to rate flight with stars, edit, and remove reviews.
+Flight is a straightforward web application that enables users to register and submit flight feedback. A user has the ability to rate Flight with stars and can also edit, and remove reviews. 
 
 ## Screenshots
 - Home
@@ -15,42 +15,40 @@ Flight is a straightforward web application that enables user to register and su
 
 # About 
 
-The front-end is created using React-rails gem, while the back-end is developed using Ruby on Rails where users can provide feedback on a list of flights.<br/>
-A review form is available for users to create new reviews.<br/>
-A user can give a Title, Description, and Star-Rating.<br/>
-A user can modify and remove reviews.
+The front-end is created using React-rails gem, while the back-end is developed using Ruby on Rails where users can provide feedback on a list of flights.
 
+A review form is also available for users to create new reviews. A user can give a Title, Description, and Star-Rating. Moreover, a user can modify and remove reviews.
 
 # Concept
 
 ## React on Rails Gem
 
-- `React-rails` gem allow us to use React in Rails framework.
+- Gem `React-rails` gem allows us to use React in the Rails framework
 - Automatically renders React server-side and client-side.
-- Lets you use `JSX`, `ES6`.
+- Lets you use `JSX`and `ES6`.
 
 
 ### Star Rating 
 
-- A simple react component for adding a star rating to the project.
+- A simple react component for adding a star rating to the project. 
 
 
 ### Styled-Component
-- Styled-components lets you write actual `CSS` in your `JavaScript`. This means you can use all the features of `CSS` you use including (but by far not limited to) media queries, all pseudo-selectors, nesting, etc.
+- Styled components let you write actual CSS in your JavaScript. This means you can use all the features of CSS you use including (but by far not limited to) media queries, all pseudo-selectors, nesting, etc.
 
 
 ## Association
 
 - **has_many Association** :
 
-  A `has_many` association indicates a one-to-many connection with another model. This association indicates that   each instance of the model has zero or more instances of another model.
+  A `has_many` association indicates a one-to-many connection with another model. This association indicates that each instance of the model has zero or more instances of another model. 
   
 - **belongs_to Association** :
 
   A `belongs_to` association sets up a connection with another model, such that each instance of the declaring model "belongs to" one instance of the other model.
 
 ## Serializers
-- Serializer converts an object in memory into a stream of bytes that can be recreated when needed. Serializers in Ruby on Rails convert a given object into a JSON format. Serializers control the particular attributes rendered when an object or model is converted into a JSON format.
+- Serializer converts an object (in memory) into a stream of bytes that can be recreated when needed. Serializers in Ruby on Rails convert a given object into a JSON format. Serializers control the particular attributes rendered when an object or model is converted into a JSON format.
 
 
 ## Tools & Gems
